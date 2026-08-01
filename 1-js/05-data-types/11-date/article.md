@@ -31,7 +31,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
 
     An integer number representing the number of milliseconds that has passed since the beginning of 1970 is called a *timestamp*.
 
-    It's a lightweight numeric representation of a date. We can always create a date from a timestamp using `new Date(timestamp)` and convert the existing `Date` object to a timestamp using the `date.getTime()` method (see below).
+    It's a lightweight numeric representation of a date. We can always create a date from a timestamp using `new Date(timestamp)` and convert the existing `Date` object to a timestamp using the `.getTime()` method (see below).
 
     Dates before 01.01.1970 have negative timestamps, e.g.:
     ```js run
@@ -54,19 +54,19 @@ To create a new `Date` object call `new Date()` with one of the following argume
     // Wed Jan 25 2017 16:00:00 GMT-0800 (Pacific Standard Time)
     ```
 
-`new Date(year, month, date, hours, minutes, seconds, ms)`
+`new Date(year, month, day, hours, minutes, seconds, ms)`
 : Create the date with the given components in the local time zone. Only the first two arguments are obligatory.
 
     - The `year` should have 4 digits. For compatibility, 2 digits are also accepted and considered `19xx`, e.g. `98` is the same as `1998` here, but always using 4 digits is strongly encouraged.
-    - The `month` count starts with `0` (Jan), up to `11` (Dec).
-    - The `date` parameter is actually the day of month, if absent then `1` is assumed.
+    - The `month` count starts from `0` (Jan), up to `11` (Dec).
+    - The `day` parameter represents the day of the month, if absent then `1` is assumed.
     - If `hours/minutes/seconds/ms` is absent, they are assumed to be equal `0`.
 
     For instance:
 
     ```js
     new Date(2011, 0, 1, 0, 0, 0, 0); // 1 Jan 2011, 00:00:00
-    new Date(2011, 0, 1); // the same, hours etc are 0 by default
+    new Date(2011, 0, 1); // the same, hours etc. are 0 by default
     ```
 
     The maximal precision is 1 ms (1/1000 sec):
@@ -105,7 +105,7 @@ Additionally, we can get a day of week:
 
 There are also their UTC-counterparts, that return day, month, year and so on for the time zone UTC+0: [getUTCFullYear()](mdn:js/Date/getUTCFullYear), [getUTCMonth()](mdn:js/Date/getUTCMonth), [getUTCDay()](mdn:js/Date/getUTCDay). Just insert the `"UTC"` right after `"get"`.
 
-If your local time zone is shifted relative to UTC, then the code below shows different hours:
+If your local time zone is offset relative to UTC, then the code below shows different hours:
 
 ```js run
 // current date
@@ -164,7 +164,7 @@ alert(today); // still today, now 00:00:00 sharp.
 
 ## Autocorrection
 
-The *autocorrection* is a very handy feature of `Date` objects. We can set out-of-range values, and it will auto-adjust itself.
+The *autocorrection* is a very handy feature of `Date` objects. We can set an out-of-range value, and it will auto-adjust itself.
 
 For instance:
 
@@ -241,7 +241,7 @@ There's a special method `Date.now()` that returns the current timestamp.
 
 It is semantically equivalent to `new Date().getTime()`, but it doesn't create an intermediate `Date` object. So it's faster and doesn't put pressure on garbage collection.
 
-It is used mostly for convenience or when performance matters, like in games in JavaScript or other specialized applications.
+It is used mostly for convenience or when performance matters, like in games or other specialized applications.
 
 So this is probably better:
 
@@ -374,7 +374,7 @@ for (let i = 0; i < 10; i++) {
 ```
 
 ```warn header="Be careful doing microbenchmarking"
-Modern JavaScript engines perform many optimizations. They may tweak results of "artificial tests" compared to "normal usage", especially when we benchmark something very small, such as how an operator works, or a built-in function. So if you seriously want to understand performance, then please study how the JavaScript engine works. And then you probably won't need microbenchmarks at all.
+Modern JavaScript engines perform many optimizations. They may tweak results of "artificial tests" compared to "normal usage", especially when we benchmark something very small, such as how an operator or a built-in function works. So if you seriously want to understand performance, then please study how the JavaScript engine works. And then you probably won't need microbenchmarks at all.
 
 The great pack of articles about V8 can be found at <https://mrale.ph>.
 ```
@@ -387,7 +387,7 @@ The string format should be: `YYYY-MM-DDTHH:mm:ss.sssZ`, where:
 
 - `YYYY-MM-DD` -- is the date: year-month-day.
 - The character `"T"` is used as the delimiter.
-- `HH:mm:ss.sss` -- is the time: hours, minutes, seconds and milliseconds.
+- `HH:mm:ss.sss` -- is the time: hours:minutes:seconds.milliseconds.
 - The optional `'Z'` part denotes the time zone in the format `+-hh:mm`. A single letter `Z` would mean UTC+0.
 
 Shorter variants are also possible, like `YYYY-MM-DD` or `YYYY-MM` or even `YYYY`.
@@ -399,7 +399,7 @@ For instance:
 ```js run
 let ms = Date.parse('2012-01-26T13:51:50.417-07:00');
 
-alert(ms); // 1327611110417  (timestamp)
+alert(ms); // 1327611110417 (timestamp)
 ```
 
 We can instantly create a `new Date` object from the timestamp:
@@ -412,8 +412,8 @@ alert(date);
 
 ## Summary
 
-- Date and time in JavaScript are represented with the [Date](mdn:js/Date) object. We can't create "only date" or "only time": `Date` objects always carry both.
-- Months are counted from zero (yes, January is a zero month).
+- Date and time are represented with the [Date](mdn:js/Date) object. We can't create "only date" or "only time": `Date` objects always carry both.
+- Months are counted from zero (yes, January is month zero).
 - Days of week in `getDay()` are also counted from zero (that's Sunday).
 - `Date` auto-corrects itself when out-of-range components are set. Good for adding/subtracting days/months/hours.
 - Dates can be subtracted, giving their difference in milliseconds. That's because a `Date` becomes the timestamp when converted to a number.
@@ -421,7 +421,7 @@ alert(date);
 
 Note that unlike many other systems, timestamps in JavaScript are in milliseconds, not in seconds.
 
-Sometimes we need more precise time measurements. JavaScript itself does not have a way to measure time in microseconds (1 millionth of a second), but most environments provide it. For instance, browser has [performance.now()](mdn:api/Performance/now) that gives the number of milliseconds from the start of page loading with microsecond precision (3 digits after the point):
+Sometimes we need more precise time measurements. JavaScript itself does not have a way to measure time in microseconds (1 millionth of a second), but most environments provide it. For instance, browser has [performance.now()](mdn:api/Performance/now) that returns the number of milliseconds from the start of page loading with microsecond precision (3 digits after the point):
 
 ```js run
 alert(`Loading started ${performance.now()}ms ago`);
