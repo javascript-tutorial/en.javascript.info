@@ -227,7 +227,7 @@ An IIFE looks like this:
 
 Here, a Function Expression is created and immediately called. So the code executes right away and has its own private variables.
 
-The Function Expression is wrapped with parenthesis `(function {...})`, because when JavaScript engine encounters `"function"` in the main code, it understands it as the start of a Function Declaration. But a Function Declaration must have a name, so this kind of code will give an error:
+The Function Expression is wrapped with parenthesis `(function() {...})`, because when JavaScript engine encounters `"function"` in the main code, it understands it as the start of a Function Declaration. But a Function Declaration must have a name, so this kind of code will give an error:
 
 ```js run
 // Tries to declare and immediately call a function
