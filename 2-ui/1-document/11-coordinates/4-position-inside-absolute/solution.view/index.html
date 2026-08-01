@@ -67,7 +67,6 @@
           break;
 
         case "right-in":
-          elem.style.width = '150px';
           elem.style.left = anchorCoords.left + anchor.offsetWidth - elem.offsetWidth + "px";
           elem.style.top = anchorCoords.top + "px";
           break;
@@ -83,9 +82,11 @@
 
     let blockquote = document.querySelector('blockquote');
 
-    showNote(blockquote, "top-in", "note top-in");
     showNote(blockquote, "top-out", "note top-out");
     showNote(blockquote, "right-out", "note right-out");
+    showNote(blockquote, "bottom-out", "note bottom-out");
+    showNote(blockquote, "top-in", "note top-in");
+    showNote(blockquote, "right-in", "note right-in");
     showNote(blockquote, "bottom-in", "note bottom-in");
   </script>
 
