@@ -10,7 +10,7 @@ We'll be using Chrome here, because it has enough features, most other browsers 
 
 Your Chrome version may look a little bit different, but it still should be obvious what's there.
 
-- Open the [example page](debugging/index.html) in Chrome.
+- Open the [example page](debugging/index.html){:target="_blank"} in Chrome.
 - Turn on developer tools with `key:F12` (Mac: `key:Cmd+Opt+I`).
 - Select the `Sources` panel.
 
