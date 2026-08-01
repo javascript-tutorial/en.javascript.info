@@ -523,6 +523,9 @@ function name(parameters, delimited, by, comma) {
 ```
 
 - Values passed to a function as parameters are copied to its local variables.
+- If a function is called, but an argument is not provided, then the value of the respective parameter becomes undefined.
+- To assign such parameter a default value instead, specify it using "=" in the parameter list during function declaration.
+- Any expression can be used as a default value for a parameter — including function calls.
 - A function may access outer variables. But it works only from inside out. The code outside of the function doesn't see its local variables.
 - A function can return a value. If it doesn't, then its result is `undefined`.
 
