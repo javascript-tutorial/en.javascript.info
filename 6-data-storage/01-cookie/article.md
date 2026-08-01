@@ -365,7 +365,7 @@ A cookie is called "third-party" if it's placed by a domain other than the page 
 
 For instance:
 1. A page at `site.com` loads a banner from another site: `<img src="https://ads.com/banner.png">`.
-2. Along with the banner, the remote server at `ads.com` may set the `Set-Cookie` header with a cookie like `id=1234`. Such a cookie originates from the `ads.com` domain, and will only be visible at `ads.com`:
+2. Along with the banner, the remote server at `ads.com` may set the `Set-Cookie` header with a cookie like `id=123`. Such a cookie originates from the `ads.com` domain, and will only be visible at `ads.com`:
 
     ![](cookie-third-party.svg)
 
