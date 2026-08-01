@@ -27,7 +27,7 @@ Luckily, there's no need to write the code to handle all this. The task has been
 
 ## JSON.stringify
 
-The [JSON](https://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) is a general format to represent values and objects. It is described as in [RFC 4627](https://tools.ietf.org/html/rfc4627) standard. Initially it was made for JavaScript, but many other languages have libraries to handle it as well.  So it's easy to use JSON for data exchange when the client uses JavaScript and the server is written on Ruby/PHP/Java/Whatever.
+The [JSON](https://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) is a general format to represent values and objects. It is described in the [RFC 8259](https://www.rfc-editor.org/rfc/rfc8259.txt) standard. It was initially made for JavaScript, but many other languages have libraries to handle it; these libraries allow for data exchange when one host uses JavaScript and another uses Ruby/PHP/Java/whatever.
 
 JavaScript provides methods:
 
