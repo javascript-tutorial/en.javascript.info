@@ -22,8 +22,8 @@ describe('debounce', function () {
     const debounced = debounce(f, 1000);
 
     debounced('a');
-    setTimeout(() => debounced('b'), 200); // ignored (too early)
-    setTimeout(() => debounced('c'), 500); // runs (1000 ms passed)
+    setTimeout(() => debounced('b'), 200);
+    setTimeout(() => debounced('c'), 500);
     this.clock.tick(1000);
 
     assert(f.notCalled, 'not called after 1000ms');
