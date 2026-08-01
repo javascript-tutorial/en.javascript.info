@@ -68,6 +68,31 @@ The algorithm of `obj instanceof Class` works roughly as follows:
     alert(obj instanceof Animal); // true: Animal[Symbol.hasInstance](obj) is called
     ```
 
+```smart header="Symbol.hasInstance can be in any ancestor class"
+If the constructor or one of its ancestors defines a custom static Symbol.hasInstance, the algorithm changes:
+    1. It finds the nearest Symbol.hasInstance in the constructor inheritance chain and calls it.
+    2. The return value of that Symbol.hasInstance determines the instanceof result.
+The default prototype chain comparison is not executed (regardless of the returned result). 
+```
+
+    For example:
+    
+    ```js run
+    class A {}
+    
+    class B extends A {
+        static [Symbol.hasInstance](obj) {
+            console.log('Custom "hasInstance" called');
+            *!*
+            return false;
+            */!*
+        }
+    }
+    class C extends B {}
+    let c = new C();
+    alert(c instanceof C); // false: B[Symbol.hasInstance](c) is called, and logs out 'Custom "hasInstance" called'
+    ```
+
 2. Most classes do not have `Symbol.hasInstance`. In that case, the standard logic is used: `obj instanceof Class` checks whether `Class.prototype` is equal to one of the prototypes in the `obj` prototype chain.
 
     In other words, compare one after another:
