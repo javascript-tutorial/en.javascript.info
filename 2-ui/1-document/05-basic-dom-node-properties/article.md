@@ -97,7 +97,7 @@ But for DOM elements they are different:
 - `console.log(elem)` shows the element DOM tree.
 - `console.dir(elem)` shows the element as a DOM object, good to explore its properties.
 
-Try it on `document.body`.
+Try it on `document.body`. You'll see the difference in all modern browsers (except Firefox, where `console.log(elem)` and `console.dir(elem)` show the same thing - the element as a DOM object).
 ```
 
 ````smart header="IDL in the spec"
