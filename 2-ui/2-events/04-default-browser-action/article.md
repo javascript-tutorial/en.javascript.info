@@ -78,9 +78,9 @@ If we omit `return false`, then after our code executes the browser will do its 
 By the way, using event delegation here makes our menu very flexible. We can add nested lists and style them using CSS to "slide down".
 
 ````smart header="Follow-up events"
-Certain events flow one into another. If we prevent the first event, there will be no second.
+Certain events flow one into another. If we prevent the browser default action for the first event, subsequent events may not happen.
 
-For instance, `mousedown` on an `<input>` field leads to focusing in it, and the `focus` event. If we prevent the `mousedown` event, there's no focus.
+For instance, `mousedown` on an `<input>` field leads to focusing in it, and the `focus` event. But if the browser default action for the `mousedown` event is prevented, there's no focus.
 
 Try to click on the first `<input>` below -- the `focus` event happens. But if you click the second one, there's no focus.
 
@@ -89,7 +89,7 @@ Try to click on the first `<input>` below -- the `focus` event happens. But if y
 <input *!*onmousedown="return false"*/!* onfocus="this.value=''" value="Click me">
 ```
 
-That's because the browser action is canceled on `mousedown`. The focusing is still possible if we use another way to enter the input. For instance, the `key:Tab` key to switch from the 1st input into the 2nd. But not with the mouse click any more.
+That's because the browser default action is canceled on `mousedown`. The focusing is still possible if we use another way to enter the input. For instance, the `key:Tab` key to switch from the 1st input into the 2nd. But not with the mouse click any more.
 ````
 
 ## The "passive" handler option
