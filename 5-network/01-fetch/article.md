@@ -98,6 +98,26 @@ let text = await response.text(); // read response body as text
 
 alert(text.slice(0, 80) + '...');
 ```
+If you are dealing with non UTF-8 charset pages, use `.arrayBuffer()` to get binary text and `TextDecoder()` to decode it into a specific encoding:
+
+```js run
+fetch('/article/fetch/non-utf8-page.html')
+  .then( response => response.arrayBuffer() )
+  .then( bytes => {
+    let krDecoder = new TextDecoder('EUC-KR');
+    let decodedHtml = krDecoder.decode(bytes);
+    return decodedHtml;
+  })
+  .then( html => {
+    let parser = new DOMParser();
+    let doc = parser.parserFromString(html,'text/html');
+    return doc.documentElement.outerHTML;
+  })
+  .then( result => alert(result) )
+  .catch( err => {
+    console.warn('Error occurred. ', err);
+  });
+```
 
 As a show-case for reading in binary format, let's fetch and show a logo image of ["fetch" specification](https://fetch.spec.whatwg.org) (see chapter [Blob](info:blob) for details about operations on `Blob`):
 
