@@ -1,4 +1,4 @@
-# LocalStorage, sessionStorage
+# localStorage, sessionStorage
 
 Web storage objects `localStorage` and `sessionStorage` allow to save key/value pairs in the browser.
 
@@ -197,7 +197,7 @@ Imagine, you have two windows with the same site in each. So `localStorage` is s
 You might want to open this page in two browser windows to test the code below.
 ```
 
-If both windows are listening for `window.onstorage`, then each one will react on updates that happened in the other one.
+If both windows are listening for `storage` event, then each one will react on updates that happened in the other one.
 
 ```js run
 // triggers on updates made to the same storage from other documents
