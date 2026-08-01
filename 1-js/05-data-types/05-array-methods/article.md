@@ -520,6 +520,21 @@ alert( arr ); // 5,4,3,2,1
 
 It also returns the array `arr` after the reversal.
 
+#### toReversed
+[recent browser="new"]
+The method [arr.toReversed](mdn:js/Array/toReversed) works similarly to the reverse method.
+However, it does not change the original array.
+
+For example:
+
+```js run
+const array = [1, 2, 3, 4, 5];
+const reversedArray = array.toReversed();
+console.log(array); // [1, 2, 3, 4, 5]
+console.log(reversedArray); // [5, 4, 3, 2, 1]
+```
+
+
 ### split and join
 
 Here's the situation from real life. We are writing a messaging app, and the person enters the comma-delimited list of receivers: `John, Pete, Mary`. But for us an array of names would be much more comfortable than a single string. How to get it?
