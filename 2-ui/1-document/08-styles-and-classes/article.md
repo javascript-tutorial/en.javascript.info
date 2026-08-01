@@ -21,6 +21,26 @@ elem.style.left = left; // e.g '123px', calculated at run-time
 elem.style.top = top; // e.g '456px'
 ```
 
+We can also set multiple styles for an element at once, using the `cssText` property. However, we should be careful with it, because it can both add styles to the existing ones and completely overwrite them with new ones:
+
+```js
+let top = /* complex calculations */;
+let left = /* complex calculations */;
+
+elem.style.cssText *!*=*/!* ` // total overwriting of elem styles, using =
+  top: ${top};
+  left: ${left};
+`;
+
+elem.style.cssText *!*+=*/!* ` // adding new styles to existing elem styles, using +=
+  top: ${top};
+  left: ${left};
+`;
+
+// if the element already has the styles we want to add (+=),
+// they will be overwritten with the new ones.
+```
+
 For other cases, like making the text red, adding a background icon -- describe that in CSS and then add the class (JavaScript can do that). That's more flexible and easier to support.
 
 ## className and classList
@@ -84,9 +104,17 @@ Besides, `classList` is iterable, so we can list all classes with `for..of`, lik
 
 ## Element style
 
-The property `elem.style` is an object that corresponds to what's written in the `"style"` attribute. Setting `elem.style.width="100px"` works the same as if we had in the attribute `style` a string `width:100px`.
+The property `elem.style` is an object that corresponds to what's written in the `"style"` attribute.
 
-For multi-word property the camelCase is used:
+Single-word properties are written in the same way, with a lowercase letter:
+
+```js no-beautify
+background  => elem.style.background
+top         => elem.style.top
+opacity     => elem.style.opacity
+```
+
+For multi-word property the [camelCase](https://en.wikipedia.org/wiki/Camel_case) is used:
 
 ```js no-beautify
 background-color  => elem.style.backgroundColor
@@ -135,31 +163,6 @@ document.body.style.background = 'red'; //set background to red
 
 setTimeout(() => document.body.style.removeProperty('background'), 1000); // remove background after 1 second
 ```
-
-````smart header="Full rewrite with `style.cssText`"
-Normally, we use `style.*` to assign individual style properties. We can't set the full style like `div.style="color: red; width: 100px"`, because `div.style` is an object, and it's read-only.
-
-To set the full style as a string, there's a special property `style.cssText`:
-
-```html run
-<div id="div">Button</div>
-
-<script>
-  // we can set special style flags like "important" here
-  div.style.cssText=`color: red !important;
-    background-color: yellow;
-    width: 100px;
-    text-align: center;
-  `;
-
-  alert(div.style.cssText);
-</script>
-```
-
-This property is rarely used, because such assignment removes all existing styles: it does not add, but replaces them. May occasionally delete something needed. But we can safely use it for new elements, when we know we won't delete an existing style.
-
-The same can be accomplished by setting an attribute: `div.setAttribute('style', 'color: red...')`.
-````
 
 ## Mind the units
 
