@@ -6,7 +6,7 @@ For instance, let's try fetching `http://example.com`:
 
 ```js run async
 try {
-  await fetch('http://example.com');
+  await fetch('https://example.com');
 } catch(err) {
   alert(err); // Failed to fetch
 }
