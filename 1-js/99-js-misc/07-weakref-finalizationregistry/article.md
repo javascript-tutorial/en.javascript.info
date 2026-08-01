@@ -476,8 +476,8 @@ You can [open this example in the sandbox](sandbox:weakref-finalizationregistry)
 
 ## Summary
 
-`WeakRef` - designed to create weak references to objects, allowing them to be deleted from memory by the garbage collector if there are no longer strong references to them.
-This is beneficial for addressing excessive memory usage and optimizing the utilization of system resources in applications.
+`WeakRef` -- designed to create weak references to objects, allowing the JavaScript engine to remove them from memory when no strong references remain.
+This helps optimize memory and system resource usage automatically.
 
-`FinalizationRegistry` - is a tool for registering callbacks, that are executed when objects that are no longer strongly referenced, are destroyed.
-This allows releasing resources associated with the object or performing other necessary operations before deleting the object from memory.
+`FinalizationRegistry` -- is a tool for registering callbacks that are executed when an object without strong references is deleted.
+This allows the programmer manually release resources associated with the object or perform additional cleanup tasks before the object is fully removed from memory.
