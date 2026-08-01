@@ -3,7 +3,7 @@
 
 As we already know, a function in JavaScript is a value.
 
-Every value in JavaScript has a type. What type is a function?
+Every value in JavaScript has a type. What is the type of a function?
 
 In JavaScript, functions are objects.
 
@@ -44,7 +44,7 @@ function f(sayHi = function() {}) {
 f();
 ```
 
-In the specification, this feature is called a "contextual name". If the function does not provide one, then in an assignment it is figured out from the context.
+In the specification, this feature is called a "contextual name". If the function does not provide one, then it is figured out from the context in an assignment.
 
 Object methods have names too:
 
@@ -68,7 +68,7 @@ alert(user.sayBye.name); // sayBye
 There's no magic though. There are cases when there's no way to figure out the right name. In that case, the name property is empty, like here:
 
 ```js run
-// function created inside array
+// function created inside an array
 let arr = [function() {}];
 
 alert( arr[0].name ); // <empty string>
@@ -282,7 +282,7 @@ let sayHi = function(who) {
 };
 ```
 
-The problem with that code is that `sayHi` may change in the outer code. If the function gets assigned to another variable instead, the code will start to give errors:
+The problem with this code is that `sayHi` may change in the outer code. If the function gets assigned to another variable instead, the code will start to give errors:
 
 ```js run
 let sayHi = function(who) {
@@ -303,7 +303,7 @@ welcome(); // Error, the nested sayHi call doesn't work any more!
 
 That happens because the function takes `sayHi` from its outer lexical environment. There's no local `sayHi`, so the outer variable is used. And at the moment of the call that outer `sayHi` is `null`.
 
-The optional name which we can put into the Function Expression is meant to solve exactly these kinds of problems.
+The optional name which we can add into the Function Expression is meant to solve exactly these kinds of problems.
 
 Let's use it to fix our code:
 
@@ -347,7 +347,7 @@ If the function is declared as a Function Expression (not in the main code flow)
 
 Also, functions may carry additional properties. Many well-known JavaScript libraries make great use of this feature.
 
-They create a "main" function and attach many other "helper" functions to it. For instance, the [jQuery](https://jquery.com) library creates a function named `$`. The [lodash](https://lodash.com) library creates a function `_`, and then adds `_.clone`, `_.keyBy` and other properties to it (see the [docs](https://lodash.com/docs) when you want to learn more about them). Actually, they do it to lessen their pollution of the global space, so that a single library gives only one global variable. That reduces the possibility of naming conflicts.
+They create a "main" function and attach many other "helper" functions to it. For instance, the [jQuery](https://jquery.com) library creates a function named `$`. The [lodash](https://lodash.com) library creates a function `_`, and then adds `_.clone`, `_.keyBy` and other properties to it (see the [lodash docs](https://lodash.com/docs) when you want to learn more about them). Actually, they do it to lessen their pollution of the global space, so that a single library gives only one global variable. That reduces the possibility of naming conflicts.
 
 
 So, a function can do a useful job by itself and also carry a bunch of other functionality in properties.
