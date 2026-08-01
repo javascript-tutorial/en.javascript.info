@@ -505,6 +505,20 @@ alert( countries.sort( (a, b) => a.localeCompare(b) ) ); // Andorra,Österreich,
 ```
 ````
 
+### toSorted
+
+In modern JavaScript, we generally avoid mutating original data, as it can lead to unexpected side effects and bugs. Because the traditional `sort()` method modifies the array in place, a new modern method was introduced. The `toSorted()` method elegantly solves this problem by returning a completely new, sorted array, leaving the initial data safely intact. It is also more optimized than the older workaround of manually cloning the array before sorting.
+
+```js run
+let fruits = ["Orange", "Apple", "Banana"];
+
+// Use toSorted() to get a new sorted array
+let sortedFruits = fruits.toSorted();
+
+alert( fruits ); // Orange, Apple, Banana (safe and unmodified!)
+alert( sortedFruits ); // Apple, Banana, Orange
+```
+
 ### reverse
 
 The method [arr.reverse](mdn:js/Array/reverse) reverses the order of elements in `arr`.
