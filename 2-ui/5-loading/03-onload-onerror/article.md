@@ -7,7 +7,7 @@ There are two events for it:
 - `onload` -- successful load,
 - `onerror` -- an error occurred.
 
-## Loading a script
+## Loading a script [#loading-a-script]
 
 Let's say we need to load a third-party script and call a function that resides there.
 
