@@ -458,11 +458,21 @@ alert( a ); // 7 (the result of 3 + 4)
 
 Here, the first expression `1 + 2` is evaluated and its result is thrown away. Then, `3 + 4` is evaluated and returned as the result.
 
-```smart header="Comma has a very low precedence"
+````smart header="Comma has a very low precedence"
 Please note that the comma operator has very low precedence, lower than `=`, so parentheses are important in the example above.
 
-Without them: `a = 1 + 2, 3 + 4` evaluates `+` first, summing the numbers into `a = 3, 7`, then the assignment operator `=` assigns `a = 3`, and the rest is ignored. It's like `(a = 1 + 2), 3 + 4`.
+Try running the following code (**we don't use `"use strict"` in the example below, otherwise we would get an error**):
+
+```js run no-strict
+a = 1 + 2, 3 + 4;
+
+alert(a); // 3
 ```
+
+An unusual result, isn't it? Especially considering that the `,` operator should “evaluate each expression, but return the result of only the last one”.
+
+Without them: `a = 1 + 2, 3 + 4` evaluates `+` first, summing the numbers into `a = 3, 7`, then the assignment operator `=` assigns `a = 3`, and the rest is ignored. It's like `(a = 1 + 2), 3 + 4`.
+````
 
 Why do we need an operator that throws away everything except the last expression?
 
