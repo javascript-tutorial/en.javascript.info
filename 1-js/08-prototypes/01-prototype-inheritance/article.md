@@ -18,7 +18,7 @@ The property `[[Prototype]]` is internal and hidden, but there are many ways to 
 
 One of them is to use the special name `__proto__`, like this:
 
-```js run
+```js
 let animal = {
   eats: true
 };
@@ -35,7 +35,7 @@ Now if we read a property from `rabbit`, and it's missing, JavaScript will autom
 
 For instance:
 
-```js
+```js run
 let animal = {
   eats: true
 };
