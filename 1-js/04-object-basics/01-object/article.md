@@ -352,7 +352,7 @@ alert( "test" in obj ); // true, the property does exist!
 
 In the code above, the property `obj.test` technically exists. So the `in` operator works right.
 
-Situations like this happen very rarely, because `undefined` should not be explicitly assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
+Situations like this happen very rarely, because `undefined` should not be explicitly assigned. We mostly use `null` for "unknown" or "empty" values.
 
 
 ## The "for..in" loop [#forin]
