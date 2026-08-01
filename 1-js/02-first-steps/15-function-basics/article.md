@@ -522,7 +522,7 @@ function name(parameters, delimited, by, comma) {
 }
 ```
 
-- Values passed to a function as parameters are copied to its local variables.
+- Values passed to a function as arguments are copied to its local variables.
 - A function may access outer variables. But it works only from inside out. The code outside of the function doesn't see its local variables.
 - A function can return a value. If it doesn't, then its result is `undefined`.
 
