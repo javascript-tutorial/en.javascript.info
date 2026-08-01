@@ -13,4 +13,4 @@ Click the button below to see how it should look like:
 
 [iframe src="solution" height=260]
 
-The source document has an example of a circle with right styles, so the task is precisely to do the animation right.
+The source document has an example of a circle with predefined styles, so the task is precisely to do the animation right.
