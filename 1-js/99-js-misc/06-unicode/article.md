@@ -35,7 +35,7 @@ JavaScript allows us to insert a character into a string by specifying its hexad
 
 - `\u{X…XXXXXX}`
 
-    `X…XXXXXX` must be a hexadecimal value of 1 to 6 bytes between `0` and `10FFFF` (the highest code point defined by Unicode). This notation allows us to easily represent all existing Unicode characters.
+    `X…XXXXXX` must be a hexadecimal value between `0` and `10FFFF` (the highest code point defined by Unicode), consisting of 1 to 6 hexadecimal digits. This notation allows us to easily represent all existing Unicode characters.
 
     ```js run
     alert( "\u{20331}" ); // 佫, a rare Chinese character (long Unicode)
