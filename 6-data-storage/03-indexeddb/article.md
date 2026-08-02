@@ -154,10 +154,10 @@ openRequest.onsuccess = function() {
 
 *!*
 openRequest.onblocked = function() {
-  // this event shouldn't trigger if we handle onversionchange correctly
+  // this handler won't be called if we handle versionchange event correctly
 
   // it means that there's another open connection to the same database
-  // and it wasn't closed after db.onversionchange triggered for it
+  // and it wasn't closed after versionchange event occurred
 };
 */!*
 ```
@@ -169,7 +169,7 @@ openRequest.onblocked = function() {
 
 We can handle things more gracefully in `db.onversionchange`, prompt the visitor to save the data before the connection is closed and so on. 
 
-Or, an alternative approach would be to not close the database in `db.onversionchange`, but instead use the `onblocked` handler (in the new tab) to alert the visitor, tell him that the newer version can't be loaded until they close other tabs.
+Or, an alternative approach would be to not close the database in `db.onversionchange`, but instead use the `onblocked` handler (in the new tab) to alert the visitor, telling them that the newer version can't be loaded until they close other tabs.
 
 These update collisions happen rarely, but we should at least have some handling for them, at least an `onblocked` handler, to prevent our script from dying silently.
 
@@ -381,7 +381,7 @@ But it will be even better, if we'd like to keep the operations together, in one
 
 First, make `fetch`, prepare the data if needed, afterwards create a transaction and perform all the database requests, it'll work then.
 
-To detect the moment of successful completion, we can listen to `transaction.oncomplete` event:
+To detect the moment of successful completion, we can listen to the `complete` event:
 
 ```js
 let transaction = db.transaction("books", "readwrite");
@@ -401,7 +401,7 @@ To manually abort the transaction, call:
 transaction.abort();
 ```
 
-That cancels all modification made by the requests in it and triggers `transaction.onabort` event.
+This will cancel all modifications made by requests in the transaction, and fire the `abort` event.
 
 
 ## Error handling
@@ -668,7 +668,8 @@ let request = store.openCursor(query, [direction]);
   - `"prev"` -- the reverse order: down from the record with the biggest key.
   - `"nextunique"`, `"prevunique"` -- same as above, but skip records with the same key (only for cursors over indexes, e.g. for multiple books with price=5 only the first one will be returned).
 
-**The main difference of the cursor is that `request.onsuccess` triggers multiple times: once for each result.**
+**The main difference of the cursor is that the `request.onsuccess` handler is called multiple times: once for each result.**
+
 
 Here's an example of how to use a cursor:
 
@@ -760,14 +761,13 @@ So we have all the sweet "plain async code" and "try..catch" stuff.
 
 If we don't catch an error, then it falls through, till the closest outer `try..catch`.
 
-An uncaught error becomes an "unhandled promise rejection" event on `window` object.
+An uncaught error fires an `unhandledrejection` event (unhandled promise rejection) on the `window` object.
 
 We can handle such errors like this:
 
 ```js
 window.addEventListener('unhandledrejection', event => {
-  let request = event.target; // IndexedDB native request object
-  let error = event.reason; //  Unhandled error object, same as request.error
+  let error = event.reason; // The unhandled error object that caused the promise rejection
   ...report about the error...
 });
 ```
