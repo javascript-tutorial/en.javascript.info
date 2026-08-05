@@ -95,6 +95,32 @@ try {
 }
 ```
 
+### `AbortSignal.timeout()`
+
+[recent browser="new"]
+
+In modern environments, if we only need to cancel a request because it is taking too long, there is a built-in shorthand: `AbortSignal.timeout(time)`.
+
+It creates a `signal` that automatically aborts after the specified number of milliseconds.
+
+We can rewrite the previous example much shorter:
+
+```js run async
+try {
+  // aborts in 1 second
+  let response = await fetch('/article/fetch-abort/demo/hang', {
+    signal: AbortSignal.timeout(1000) 
+  });
+} catch(err) {
+  // Note: AbortSignal.timeout() throws a "TimeoutError", not an "AbortError"
+  if (err.name == 'TimeoutError') { 
+    alert("Aborted due to timeout!");
+  } else {
+    throw err;
+  }
+}
+```
+
 ## AbortController is scalable
 
 `AbortController` is scalable. It allows to cancel multiple fetches at once.
