@@ -95,7 +95,7 @@ The clipboard is a "global" OS-level thing. A user may switch between various ap
 
 So most browsers allow seamless read/write access to the clipboard only in the scope of certain user actions, such as copying/pasting etc.
 
-It's forbidden to generate "custom" clipboard events with `dispatchEvent` in all browsers except Firefox. And even if we manage to dispatch such event, the specification clearly states that such "syntetic" events must not provide access to the clipboard.
+It's forbidden to generate "custom" clipboard events with `dispatchEvent` in all browsers except Firefox. And even if we manage to dispatch such event, the specification clearly states that such "synthetic" events must not provide access to the clipboard.
 
 Even if someone decides to save `event.clipboardData` in an event handler, and then access it later -- it won't work.
 

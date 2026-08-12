@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="-56.888 -212.944 192.167 294.011" width="178.044px" height="272.403px" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <style bx:fonts="Open Sans">@import url(https://fonts.googleapis.com/css2?family=Open+Sans%3Aital%2Cwght%400%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C800%3B1%2C300%3B1%2C400%3B1%2C500%3B1%2C600%3B1%2C700%3B1%2C800&amp;display=swap);</style>
+  </defs>
+  <g id="garbage-collection" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1" transform="matrix(1.708757996559143, 0, 0, 1.708757996559143, -109.71231842041016, -35.19435119628906)" style="">
+    <g id="memory-user-john-admin.svg" transform="matrix(1, 0, 0, 1, -1.759865, 4.803441)">
+      <path id="Rectangle-4" fill="#FBF2EC" stroke="#DBAF88" stroke-width="2" d="M 39.02 4.206 L 125.8 4.206 L 125.8 48.227 L 39.02 48.227 L 39.02 4.206 Z" style=""/>
+      <path id="Rectangle-1" fill="#FBF2EC" stroke="#DBAF88" stroke-width="2" d="M 36.398 -102.608 L 129.398 -102.608 L 129.398 -76.608 L 36.398 -76.608 L 36.398 -102.608 Z"/>
+      <text id="&lt;global&gt;" style="fill: rgb(175, 110, 36); font-family: 'Open Sans'; font-size: 10.8px; font-weight: 500; white-space: pre;" x="57.977" y="-85.926"> &lt;global&gt;</text>
+      <path d="M 105.999 1.57 L 113.013 13.895 L 98.985 13.895 L 105.999 1.57 Z" style="fill-rule: nonzero; fill: rgb(172, 67, 67);" transform="matrix(1, 0, 0, -1, 0, 0)" bx:shape="triangle 98.985 1.57 14.028 12.325 0.5 0 1@df7d9fa9"/>
+      <g style="" transform="matrix(0.7989, 0, 0, 0.7989, 13.076554, 6.083323)">
+        <text id="name:-&quot;John&quot;" style="fill: rgb(175, 110, 36); font-family: 'Open Sans'; font-size: 12px; font-weight: 500; white-space: pre;" x="48.212" y="37.89">name: "John"</text>
+        <text id="Object" style="fill: rgb(175, 110, 36); font-family: 'Open Sans'; font-size: 14px; font-weight: 500; white-space: pre;" x="61.598" y="23.794">Object</text>
+      </g>
+      <g>
+        <rect x="105.024" y="-69.436" width="1.99" height="5.009" style="paint-order: stroke; stroke: rgb(53, 81, 138); stroke-width: 0px; fill: rgb(172, 67, 67);"/>
+        <rect x="105.014" y="-59.02" width="1.99" height="5.009" style="paint-order: stroke; stroke: rgb(53, 81, 138); stroke-width: 0px; fill: rgb(172, 67, 67);"/>
+        <rect x="105.014" y="-48.877" width="1.99" height="5.009" style="paint-order: stroke; stroke: rgb(53, 81, 138); stroke-width: 0px; fill: rgb(172, 67, 67);"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1.024052, -0.03572, 31.45084)" style="">
+        <rect x="105.024" y="-69.051" width="1.99" height="5.009" style="paint-order: stroke; stroke: rgb(53, 81, 138); stroke-width: 0px; fill: rgb(172, 67, 67);"/>
+        <rect x="105.014" y="-59.02" width="1.99" height="5.009" style="paint-order: stroke; stroke: rgb(53, 81, 138); stroke-width: 0px; fill: rgb(172, 67, 67);"/>
+        <rect x="105.014" y="-48.877" width="1.99" height="5.009" style="paint-order: stroke; stroke: rgb(53, 81, 138); stroke-width: 0px; fill: rgb(172, 67, 67);"/>
+      </g>
+      <text id="text-1" style="fill: rgb(172, 67, 67); font-family: 'Open Sans'; font-size: 14px; font-weight: 600; white-space: pre;" transform="matrix(0.735667, 0, 0, 0.753868, 86.426659, 10.790039)" x="31.917" y="-40.191">admin</text>
+    </g>
+  </g>
+  <g transform="matrix(0.529145, 0, 0, 0.529145, -21.841589, -83.135681)" style="">
+    <path d="M80.179,13.758c-18.342-18.342-48.08-18.342-66.422,0c-18.342,18.341-18.342,48.08,0,66.421 c18.342,18.342,48.08,18.342,66.422,0C98.521,61.837,98.521,32.099,80.179,13.758z M44.144,83.117 c-4.057,0-7.001-3.071-7.001-7.305c0-4.291,2.987-7.404,7.102-7.404c4.123,0,7.001,3.044,7.001,7.404 C51.246,80.113,48.326,83.117,44.144,83.117z M54.73,44.921c-4.15,4.905-5.796,9.117-5.503,14.088l0.097,2.495 c0.011,0.062,0.017,0.125,0.017,0.188c0,0.58-0.47,1.051-1.05,1.051c-0.004-0.001-0.008-0.001-0.012,0h-7.867 c-0.549,0-1.005-0.423-1.047-0.97l-0.202-2.623c-0.676-6.082,1.508-12.218,6.494-18.202c4.319-5.087,6.816-8.865,6.816-13.145 c0-4.829-3.036-7.536-8.548-7.624c-3.403,0-7.242,1.171-9.534,2.913c-0.264,0.201-0.607,0.264-0.925,0.173 s-0.575-0.327-0.693-0.636l-2.42-6.354c-0.169-0.442-0.02-0.943,0.364-1.224c3.538-2.573,9.441-4.235,15.041-4.235 c12.36,0,17.894,7.975,17.894,15.877C63.652,33.765,59.785,38.919,54.73,44.921z" style="fill: rgb(172, 67, 67);"/>
+  </g>
+  <rect x="-52.271" y="-25.92" width="160.339" height="87.431" style="fill: rgba(216, 216, 216, 0); stroke: rgb(172, 67, 67); stroke-width: 3px;"/>
+</svg>

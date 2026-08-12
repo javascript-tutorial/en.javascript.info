@@ -1,0 +1,49 @@
+.app {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.start-messages {
+    width: fit-content;
+}
+
+.window {
+    width: 100%;
+    border: 2px solid #464154;
+    overflow: hidden;
+}
+
+.window__header {
+    position: sticky;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #736e7e;
+}
+
+.window__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.window__button {
+    padding: 4px;
+    background: #4f495c;
+    outline: none;
+    border: 2px solid #464154;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.window__body {
+    height: 250px;
+    padding: 16px;
+    overflow: scroll;
+    background-color: #736e7e33;
+}

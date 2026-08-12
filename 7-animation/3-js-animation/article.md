@@ -452,4 +452,4 @@ Surely we could improve it, add more bells and whistles, but JavaScript animatio
 
 JavaScript animations can use any timing function. We covered a lot of examples and transformations to make them even more versatile. Unlike CSS, we are not limited to Bezier curves here.
 
-The same is about `draw`: we can animate anything, not just CSS properties.
+The same is true about `draw`: we can animate anything, not just CSS properties.

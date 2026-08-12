@@ -128,13 +128,13 @@ Such snippet in an HTML markup looks like this:
 ...
 ```
 
-For better readability and at the same time, to beautify it, we'll be using a JavaScript syntax highlighting library on our site, like [Prism.js](https://prismjs.com/). To get syntax highlighting for above snippet in Prism, `Prism.highlightElem(pre)` is called, which examines the contents of such `pre` elements and adds special tags and styles for colored syntax highlighting into those elements, similar to what you see in examples here, on this page.
+For better readability and at the same time, to beautify it, we'll be using a JavaScript syntax highlighting library on our site, like [Prism.js](https://prismjs.com/). To get syntax highlighting for above snippet in Prism, `Prism.highlightElement(pre)` is called, which examines the contents of such `pre` elements and adds special tags and styles for colored syntax highlighting into those elements, similar to what you see in examples here, on this page.
 
-When exactly should we run that highlighting method? Well, we can do it on `DOMContentLoaded` event, or put the script at the bottom of the page. The moment our DOM is ready, we can search for elements `pre[class*="language"]` and call `Prism.highlightElem` on them:
+When exactly should we run that highlighting method? Well, we can do it on `DOMContentLoaded` event, or put the script at the bottom of the page. The moment our DOM is ready, we can search for elements `pre[class*="language"]` and call `Prism.highlightElement` on them:
 
 ```js
 // highlight all code snippets on the page
-document.querySelectorAll('pre[class*="language"]').forEach(Prism.highlightElem);
+document.querySelectorAll('pre[class*="language"]').forEach(elem => Prism.highlightElement(elem));
 ```
 
 Everything's simple so far, right? We find code snippets in HTML and highlight them.
@@ -146,9 +146,9 @@ let article = /* fetch new content from server */
 articleElem.innerHTML = article;
 ```
 
-The new `article` HTML may contain code snippets. We need to call `Prism.highlightElem` on them, otherwise they won't get highlighted.
+The new `article` HTML may contain code snippets. We need to call `Prism.highlightElement` on them, otherwise they won't get highlighted.
 
-**Where and when to call `Prism.highlightElem` for a dynamically loaded article?**
+**Where and when to call `Prism.highlightElement` for a dynamically loaded article?**
 
 We could append that call to the code that loads an article, like this:
 
@@ -158,7 +158,7 @@ articleElem.innerHTML = article;
 
 *!*
 let snippets = articleElem.querySelectorAll('pre[class*="language-"]');
-snippets.forEach(Prism.highlightElem);
+snippets.forEach(elem => Prism.highlightElement(elem));
 */!*
 ```
 

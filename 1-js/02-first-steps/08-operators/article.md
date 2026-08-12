@@ -266,7 +266,7 @@ alert( c ); // 4
 
 Chained assignments evaluate from right to left. First, the rightmost expression `2 + 2` is evaluated and then assigned to the variables on the left: `c`, `b` and `a`. At the end, all the variables share a single value.
 
-Once again, for the purposes of readability it's better to split such code into few lines:
+Once again, for the purposes of readability it's better to split such code into a few lines:
 
 ```js
 c = 2 + 2;
