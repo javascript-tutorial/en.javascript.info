@@ -34,7 +34,7 @@ Now you could click the same toggler <span class="devtools" style="background-po
 
 ## Console
 
-If we press `key:Esc`, then a console opens below. We can type commands there and press `key:Enter` to execute.
+If we press `key:Ctrl+\``, then a console opens below. We can type commands there and press `key:Enter` to execute.
 
 After a statement is executed, its result is shown below.
 
