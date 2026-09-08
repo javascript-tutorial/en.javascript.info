@@ -70,17 +70,17 @@ For every internal method, there's a trap in this table: the name of the method 
 | `[[OwnPropertyKeys]]` | `ownKeys` | [Object.getOwnPropertyNames](mdn:/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames), [Object.getOwnPropertySymbols](mdn:/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols), `for..in`, `Object.keys/values/entries` |
 
 ```warn header="Invariants"
-JavaScript enforces some invariants -- conditions that must be fulfilled by internal methods and traps.
+JavaScript enforces some invariants -- conditions that must be fulfilled by internal methods. Proxy traps are restricted by them as well.
 
-Most of them are for return values:
-- `[[Set]]` must return `true` if the value was written successfully, otherwise `false`.
-- `[[Delete]]` must return `true` if the value was deleted successfully, otherwise `false`.
+Internal methods also define what their return values mean, and traps should normally follow that:
+- `[[Set]]` should return `true` if the value was written successfully, otherwise `false`.
+- `[[Delete]]` should return `true` if the property was deleted or is not present, otherwise `false`.
 - ...and so on, we'll see more in examples below.
 
-There are some other invariants, like:
-- `[[GetPrototypeOf]]`, applied to the proxy object must return the same value as `[[GetPrototypeOf]]` applied to the proxy object's target object. In other words, reading prototype of a proxy must always return the prototype of the target object.
+Some restrictions are enforced as invariants. For example:
+- `[[GetPrototypeOf]]` must return an object or `null`. If the target object is non-extensible, it must return the same value as `[[GetPrototypeOf]]` applied to the proxy object's target object.
 
-Traps can intercept these operations, but they must follow these rules.
+Traps can intercept these operations, but they can't break these invariants.
 
 Invariants ensure correct and consistent behavior of language features. The full invariants list is in [the specification](https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots). You probably won't violate them if you're not doing something weird.
 ```
@@ -194,7 +194,7 @@ The `set` trap triggers when a property is written.
 - `value` -- property value,
 - `receiver` -- similar to `get` trap, matters only for setter properties.
 
-The `set` trap should return `true` if setting is successful, and `false` otherwise (triggers `TypeError`).
+The `set` trap should return `true` if setting is successful, and `false` otherwise. A `false` result can cause `TypeError`; for example, `push` below requires the write to succeed.
 
 Let's use it to validate new values:
 
@@ -232,11 +232,9 @@ We don't have to override value-adding array methods like `push` and `unshift`, 
 So the code is clean and concise.
 
 ```warn header="Don't forget to return `true`"
-As said above, there are invariants to be held.
+As said above, `set` should return `true` for a successful write.
 
-For `set`, it must return `true` for a successful write.
-
-If we forget to do it or return any falsy value, the operation triggers `TypeError`.
+If we forget to do it, the trap returns `undefined`, which is falsy, so the write is reported as failed. Operations that require the write to succeed, such as `push` above, then trigger `TypeError`.
 ```
 
 ## Iteration with "ownKeys" and "getOwnPropertyDescriptor"
