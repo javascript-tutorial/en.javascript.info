@@ -312,30 +312,34 @@ Most linters are integrated with many popular editors: just enable the plugin in
 For instance, for ESLint you should do the following:
 
 1. Install [Node.js](https://nodejs.org/).
-2. Install ESLint with the command `npm install -g eslint` (npm is a JavaScript package installer).
-3. Create a config file named `.eslintrc` in the root of your JavaScript project (in the folder that contains all your files).
+2. Install ESLint in your project with the command `npm install --save-dev eslint` (npm is a JavaScript package installer).
+3. Create a config file named `eslint.config.js` in the root of your JavaScript project (in the folder that contains all your files). Running `npm init @eslint/config@latest` generates one for you.
 4. Install/enable the plugin for your editor that integrates with ESLint. The majority of editors have one.
 
-Here's an example of an `.eslintrc` file:
+Here's an example of an `eslint.config.js` file:
 
 ```js
-{
-  "extends": "eslint:recommended",
-  "env": {
-    "browser": true,
-    "node": true,
-    "es6": true
+import js from "@eslint/js";
+import globals from "globals";
+import { defineConfig } from "eslint/config";
+
+export default defineConfig([
+  js.configs.recommended,
+  {
+    languageOptions: {
+      globals: { ...globals.browser, ...globals.node },
+    },
+    rules: {
+      "no-console": "off",
+      indent: ["error", 2],
+    },
   },
-  "rules": {
-    "no-console": 0,
-    "indent": 2
-  }
-}
+]);
 ```
 
-Here the directive `"extends"` denotes that the configuration is based on the "eslint:recommended" set of settings. After that, we specify our own.
+Here `js.configs.recommended` is the set of rules recommended by ESLint, which the configuration is based on. After that, we specify our own.
 
-It is also possible to download style rule sets from the web and extend them instead. See <https://eslint.org/docs/user-guide/getting-started> for more details about installation.
+It is also possible to download style rule sets from the web and extend them instead. See <https://eslint.org/docs/latest/use/getting-started> for more details about installation.
 
 Also certain IDEs have built-in linting, which is convenient but not as customizable as ESLint.
 
