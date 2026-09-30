@@ -309,7 +309,7 @@ user.sayNow("Hello");
 ```
 
 The result of `partial(func[, arg1, arg2...])` call is a wrapper `(*)` that calls `func` with:
-- Same `this` as it gets (for `user.sayNow` call it's `user`)
+- Same `this` as it gets (for `user.sayNow` call its `user`)
 - Then gives it `...argsBound` -- arguments from the `partial` call (`"10:00"`)
 - Then gives it `...args` -- arguments given to the wrapper (`"Hello"`)
 
