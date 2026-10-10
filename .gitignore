@@ -10,6 +10,7 @@
 *.sass-cache
 
 # OS or Editor folders
+temp_auto_push.bat
 .DS_Store
 .idea
 .cache
@@ -21,4 +22,5 @@ sftp-config.json
 Thumbs.db
 
 
-/svgs
+/svgs.gitignore
+branch_structure.json
