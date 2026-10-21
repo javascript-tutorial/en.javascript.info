@@ -72,7 +72,7 @@ sayHi(); // Hello    //     this still works too (why wouldn't it)
 Here's what happens above in detail:
 
 1. The Function Declaration `(1)` creates the function and puts it into the variable named `sayHi`.
-2. Line `(2)` copies it into the variable `func`. Please note again: there are no parentheses after `sayHi`. If there were, then `func = sayHi()` would write  *the result of the call* `sayHi()` into `func`, not *the function* `sayHi` itself.
+2. Line `(2)` makes the same function available through the variable `func`. Please note again: there are no parentheses after `sayHi`. If there were, then `func = sayHi()` would write  *the result of the call* `sayHi()` into `func`, not *the function* `sayHi` itself.
 3. Now the function can be called as both `sayHi()` and `func()`.
 
 We could also have used a Function Expression to declare `sayHi`, in the first line:
