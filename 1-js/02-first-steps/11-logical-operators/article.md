@@ -34,7 +34,7 @@ If an operand is not a boolean, it's converted to a boolean for the evaluation.
 For instance, the number `1` is treated as `true`, the number `0` as `false`:
 
 ```js run
-if (1 || 0) { // works just like if( true || false )
+if (1 || 0) { // equivalent to: if (true || false)
   alert( 'truthy!' );
 }
 ```
