@@ -27,7 +27,7 @@ function customPromiseAll(promises) {
           results[index] = result;
           resultsCount++;
           if (resultsCount === promises.length) {
-            resolve(results); // when all results are ready - successs
+            resolve(results); // when all results are ready - success
           }
         })
         .catch(error => {

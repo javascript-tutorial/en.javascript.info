@@ -197,8 +197,8 @@ How does it work? Again, using prototypes. As you might have already guessed, `e
 
 So, `Rabbit extends Animal` creates two `[[Prototype]]` references:
 
-1. `Rabbit` function prototypally inherits from `Animal` function.
-2. `Rabbit.prototype` prototypally inherits from `Animal.prototype`.
+1. `Rabbit` function prototypically inherits from `Animal` function.
+2. `Rabbit.prototype` prototypically inherits from `Animal.prototype`.
 
 As a result, inheritance works both for regular and static methods.
 
