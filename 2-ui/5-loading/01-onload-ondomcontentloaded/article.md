@@ -133,22 +133,25 @@ The notable exception is sending analytics.
 
 Let's say we gather data about how the page is used: mouse clicks, scrolls, viewed page areas, and so on.
 
-Naturally, `unload` event is when the user leaves us, and we'd like to save the data on our server.
+When the page becomes hidden, we may want to save the collected data on our server. The `visibilitychange` event is useful for this: it fires when the user switches tabs, minimizes the browser, or leaves the page.
 
 There exists a special `navigator.sendBeacon(url, data)` method for such needs, described in the specification <https://w3c.github.io/beacon/>.
 
-It sends the data in background. The transition to another page is not delayed: the browser leaves the page, but still performs `sendBeacon`.
+It sends the data in the background. The transition to another page is not delayed: the browser leaves the page, but still performs `sendBeacon`.
 
 Here's how to use it:
+
 ```js
 let analyticsData = { /* object with gathered data */ };
+let analyticsSent = false;
 
 document.addEventListener("visibilitychange", function() {
-  if (document.visibilityState === "hidden") {
-    navigator.sendBeacon("/analytics", JSON.stringify(analyticsData));
+  if (document.visibilityState === "hidden" && !analyticsSent) {
+    analyticsSent = navigator.sendBeacon("/analytics", JSON.stringify(analyticsData));
   }
 });
-```
+``` 
+
 
 - The request is sent as POST.
 - We can send not only a string, but also forms and other formats, as described in the chapter <info:fetch>, but usually it's a stringified object.
